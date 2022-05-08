@@ -1,21 +1,18 @@
-# Acom email
+# Acom telegram
 ### Cách sử dụng
 
-- Request: `[ip address]:8088/api/email`
+- Request: `[ip address]:8089/api/message`
 - Request body:
 <pre>
 <code>{
-  "destinations": [
-    "cn20082000@gmail.com"
-  ],
-  "subject": "Test subject",
+  "username": "cn20082000",
   "content": "test content"
 }</code>
 </pre>
 - Reponse success:
 <pre>
 <code>{
-  "data": "Email sent!"
+  "data": "Message sent!"
 }</code>
 </pre>
 - Reponse failure:
@@ -23,8 +20,8 @@
 <code>{
   "error": {
     "status": 400,
-    "error": "MISSING_SUBJECT",
-    "message": "missing subject",
+    "error": "UNKNOWN_USER",
+    "message": "cannot find chat id for this username",
     "stacktrace": "..."
   }
 }</code>
