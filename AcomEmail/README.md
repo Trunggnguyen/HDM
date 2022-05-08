@@ -1,4 +1,8 @@
 # Acom email
+- Chức năng: gửi mail hàng loạt.
+- Địa chỉ gửi sửa trong `destinations`
+- Tiêu đề mail sửa trong `subject`
+- Nội dung mail sửa trong `content`
 ### Cách sử dụng
 
 - Request: `[ip address]:8088/api/email`
