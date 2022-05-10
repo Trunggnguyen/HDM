@@ -16,6 +16,6 @@ class CustomerApiController {
 
     @GetMapping(params = ["id"])
     fun getCustomer(@RequestParam id: Long): Customer? {
-        return customers.firstOrNull { p -> p.id == id }
+        return customers.firstOrNull { c -> c.id == id }
     }
 }
