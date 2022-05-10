@@ -23,14 +23,13 @@ class ProductApiController {
         return products.firstOrNull { p -> p.id == id }
     }
 
-    @GetMapping(params = ["ids"])
-    fun getProduct(@RequestParam ids: Array<Long>): List<Product> {
-        val result = mutableListOf<Product>()
-        ids.forEach {
-            products.firstOrNull { p -> p.id == it }?.let { product ->
-                result.add(product)
-            }
+    @PutMapping(params = ["id", "reduction"])
+    fun updateProduct(@RequestParam id: Long, @RequestParam reduction: Int): Product? {
+        val index = products.indexOfFirst { p -> p.id == id }
+        if (index >= 0) {
+            products[index].quantity -= reduction
+            return products[index]
         }
-        return result
+        return null
     }
 }
