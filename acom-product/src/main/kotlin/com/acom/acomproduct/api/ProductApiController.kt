@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin
-@RequestMapping("/product")
+@RequestMapping
 class ProductApiController {
 
     val products = listOf(
