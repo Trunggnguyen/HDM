@@ -18,15 +18,4 @@ class CustomerApiController {
     fun getCustomer(@RequestParam id: Long): Customer? {
         return customers.firstOrNull { p -> p.id == id }
     }
-
-    @GetMapping(params = ["ids"])
-    fun getCustomer(@RequestParam ids: Array<Long>): List<Customer> {
-        val result = mutableListOf<Customer>()
-        ids.forEach {
-            customers.firstOrNull { c -> c.id == it }?.let { customer ->
-                result.add(customer)
-            }
-        }
-        return result
-    }
 }
