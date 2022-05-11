@@ -22,12 +22,14 @@ class EmailApiController(
             Vui lòng kiểm tra thông báo thường xuyên để biết thời gian nhận hàng nhé.
             Chi tiết hóa đơn:
             Tên mặt hàng,    Số lượng,    Đơn giá,
+            
         """.trimIndent()
         order.products?.let {
             it.forEach { product ->
                 content += "\n${product.name},\t${product.quantity},\t${BigDecimal(product.price!!).toPlainString()} VND,"
             }
-            content += "\nThành tiền: ${BigDecimal(it.sumOf { p -> p.price!! * p.quantity }).toPlainString()} VND"
+            content += "\n\nVận chuyển: ${BigDecimal(order.shipment?.price!!).toPlainString()} VND,"
+            content += "\n\nThành tiền: ${BigDecimal(it.sumOf { p -> p.price!! * p.quantity } + order.shipment.price).toPlainString()} VND"
         }
 
         val emailMessage = EmailMessage(
