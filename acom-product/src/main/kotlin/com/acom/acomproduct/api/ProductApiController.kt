@@ -23,11 +23,11 @@ class ProductApiController {
         return products.firstOrNull { p -> p.id == id }
     }
 
-    @PutMapping(params = ["id", "reduction"])
-    fun updateProduct(@RequestParam id: Long, @RequestParam reduction: Int): Product? {
-        val index = products.indexOfFirst { p -> p.id == id }
+    @PutMapping
+    fun updateProduct(@RequestBody product: Product): Product? {
+        val index = products.indexOfFirst { p -> p.id == product.id }
         if (index >= 0) {
-            products[index].quantity -= reduction
+            products[index].quantity -= product.quantity
             return products[index]
         }
         return null
