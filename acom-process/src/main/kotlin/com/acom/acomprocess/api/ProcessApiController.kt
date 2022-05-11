@@ -21,6 +21,7 @@ class ProcessApiController {
     val customerUrl = "http://localhost:8091"
     val shipmentUrl = "http://localhost:8092"
     val orderUrl = "http://localhost:8093"
+    val emailUrl = "http://localhost:8094"
 
     @PostMapping
     fun process(@RequestBody order: Order): String {
@@ -64,6 +65,10 @@ class ProcessApiController {
                 restTemplate.putForObject(productUrl, productHttpEntity, Product::class.java)
             }
         }
+
+        // send email
+        val notificationEntity = HttpEntity(responseOrder, null)
+        restTemplate.postForObject(emailUrl, notificationEntity, String::class.java)
 
         return "Success"
     }
