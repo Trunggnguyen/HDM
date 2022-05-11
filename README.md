@@ -4,6 +4,8 @@
 - `Customer`: port 8091
 - `Shipment`: port 8092
 - `Order`: port 8093
+- `Email`: port 8094
+- `Telegram`: port 8095
 - `Process`: port 8080
 ### Kích hoạt process như sau:
 - Method: POST
@@ -11,7 +13,7 @@
 - Body: 
 <pre><code>{
     "customer": {
-        "id": 2,
+        "id": 1,
         "name": "Nguyễn Công Chính",
         "address": "Hà Nội",
         "tel": "0123456789",
@@ -27,17 +29,17 @@
             "price": 4.7E7
         },
         {
-            "id": 2,
-            "name": "Laptop Asus VivoBook",
-            "description": "R5 5600H/8GB RAM/512GB SSD/14 Oled 2.8K/Win11/Bạc",
-            "quantity": 0,
-            "price": 2.2E7
+            "id": 6,
+            "name": "Máy tính bảng Samsung Galaxy Tab",
+            "description": "32GB/8 inch/Wifi/4G/Android 9.0/Bạc",
+            "quantity": 5,
+            "price": 7000000.0
         }
     ],
     "shipment": {
         "id": 4,
-        "name": "Kerry TTC Express",
-        "price": 200000.0
+        "name": "ViettelPost",
+        "price": 70000.0
     }
 }</code></pre>
 - Success response: `Success`
