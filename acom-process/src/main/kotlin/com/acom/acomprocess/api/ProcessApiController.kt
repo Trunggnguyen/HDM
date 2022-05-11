@@ -39,7 +39,7 @@ class ProcessApiController {
                 if (product.quantity < p.quantity) {
                     return "Failed! The quantity of ${p.name} is not enough!"
                 }
-                product.quantity -= p.quantity
+                product.quantity = p.quantity
                 products.add(product)
             }
         }
@@ -51,10 +51,10 @@ class ProcessApiController {
         // save order
         val validatedOrder = Order(customer, products, shipment)
         val httpEntity = HttpEntity(validatedOrder, null)
-        val responseOrder = restTemplate.postForObject(orderUrl, httpEntity, Order::class.java)
+        restTemplate.postForObject(orderUrl, httpEntity, Order::class.java)
 
         // update product quantity
-        responseOrder?.products?.let {
+        validatedOrder.products?.let {
             for (p in it) {
                 val productHttpEntity = HttpEntity(p, null)
                 restTemplate.putForObject(productUrl, productHttpEntity, Product::class.java)
@@ -62,11 +62,11 @@ class ProcessApiController {
         }
 
         // send email
-        val emailHttpEntity = HttpEntity(responseOrder, null)
+        val emailHttpEntity = HttpEntity(validatedOrder, null)
         restTemplate.postForObject(emailUrl, emailHttpEntity, String::class.java)
 
         // send telegram message
-        val telegramHttpEntity = HttpEntity(responseOrder?.customer, null)
+        val telegramHttpEntity = HttpEntity(validatedOrder.customer, null)
         restTemplate.postForObject(telegramUrl, telegramHttpEntity, String::class.java)
 
         return "Success"

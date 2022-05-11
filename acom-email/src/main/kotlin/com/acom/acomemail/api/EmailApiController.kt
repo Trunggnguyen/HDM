@@ -27,7 +27,7 @@ class EmailApiController(
             it.forEach { product ->
                 content += "\n${product.name},\t${product.quantity},\t${BigDecimal(product.price!!).toPlainString()} VND,"
             }
-            content += "\nThành tiền: ${BigDecimal(it.sumOf { p -> p.price!! }).toPlainString()} VND"
+            content += "\nThành tiền: ${BigDecimal(it.sumOf { p -> p.price!! * p.quantity }).toPlainString()} VND"
         }
 
         val emailMessage = EmailMessage(

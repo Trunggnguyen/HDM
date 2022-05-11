@@ -27,7 +27,7 @@ class ProductApiController {
     fun updateProduct(@RequestBody product: Product): Product? {
         val index = products.indexOfFirst { p -> p.id == product.id }
         if (index >= 0) {
-            products[index].quantity = product.quantity
+            products[index].quantity -= product.quantity
             return products[index]
         }
         return null
