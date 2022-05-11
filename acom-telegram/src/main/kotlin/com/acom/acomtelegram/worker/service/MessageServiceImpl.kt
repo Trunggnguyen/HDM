@@ -11,7 +11,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException
 
 @Service
 class MessageServiceImpl(
-    private val userService: UserService,
     private val messageValid: MessageValidator
 ) : MessageService {
 
@@ -24,7 +23,7 @@ class MessageServiceImpl(
 
         val sendMsg = SendMessage()
 
-        sendMsg.chatId = userService.getByUsername(message.username!!)
+        sendMsg.chatId = message.username!!
         sendMsg.text = message.content!!
 
         try {

@@ -8,7 +8,6 @@ import com.acom.acomprocess.util.putForObject
 import org.springframework.http.HttpEntity
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.client.RestTemplate
-import org.springframework.web.client.getForObject
 
 @RestController
 @CrossOrigin
@@ -22,6 +21,7 @@ class ProcessApiController {
     val shipmentUrl = "http://localhost:8092"
     val orderUrl = "http://localhost:8093"
     val emailUrl = "http://localhost:8094"
+    val telegramUrl = "http://localhost:8095"
 
     @PostMapping
     fun process(@RequestBody order: Order): String {
@@ -33,11 +33,6 @@ class ProcessApiController {
         // validate products
         val products = mutableListOf<Product>()
         order.products?.let {
-//            val distinctProducts = it.toMutableList()
-//            for (i1 in 0..distinctProducts.size) {
-//                for (i2 in i1..distinctProducts.size) {
-//                }
-//            }
             for (p in it) {
                 val product = restTemplate.getForObject("$productUrl?id=${p.id}", Product::class.java)
                     ?: return "Failed! Product ${p.name} not found!"
@@ -67,8 +62,12 @@ class ProcessApiController {
         }
 
         // send email
-        val notificationEntity = HttpEntity(responseOrder, null)
-        restTemplate.postForObject(emailUrl, notificationEntity, String::class.java)
+        val emailHttpEntity = HttpEntity(responseOrder, null)
+        restTemplate.postForObject(emailUrl, emailHttpEntity, String::class.java)
+
+        // send telegram message
+        val telegramHttpEntity = HttpEntity(responseOrder?.customer, null)
+        restTemplate.postForObject(telegramUrl, telegramHttpEntity, String::class.java)
 
         return "Success"
     }
