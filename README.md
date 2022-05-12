@@ -1,11 +1,12 @@
 # HDM
 ### Các service hiện có:
-- `Product`: port 8090
+- `Verify`: port 8090
 - `Customer`: port 8091
-- `Shipment`: port 8092
-- `Order`: port 8093
-- `Email`: port 8094
-- `Telegram`: port 8095
+- `Product`: port 8092
+- `Shipment`: port 8093
+- `Order`: port 8094
+- `Email`: port 8095
+- `Telegram`: port 806
 - `Process`: port 8080
 ### Kích hoạt process như sau:
 - Method: POST
@@ -18,7 +19,7 @@
         "address": "Hà Nội",
         "tel": "0123456789",
         "email": "cn20082000@gmail.com",
-        "telegramId": "1988889962"
+        "telegramId": ""
     },
     "products": [
         {
