@@ -5,7 +5,7 @@ import org.telegram.telegrambots.meta.api.objects.Update
 
 class AcomBot : TelegramLongPollingBot() {
     override fun getBotToken(): String {
-        return "5361075852:AAEBGdyQcBhos4vZGQZ3QNq0asGjZQrSFxs"
+        return "abc"
     }
 
     override fun getBotUsername() = "acom_hdv_bot"
