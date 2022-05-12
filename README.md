@@ -39,7 +39,7 @@
     "shipment": {
         "id": 4,
         "name": "ViettelPost",
-        "price": 70000.0
+        "price": 70000.0`
     }
 }</code></pre>
 - Success response: `Success`
