@@ -15,13 +15,13 @@ import org.springframework.web.client.RestTemplate
 class ProcessApiController {
 
     val restTemplate = RestTemplate()
-
-    val productUrl = "http://localhost:8090"
+    val verifyUrl = "http://localhost:8090"
     val customerUrl = "http://localhost:8091"
-    val shipmentUrl = "http://localhost:8092"
-    val orderUrl = "http://localhost:8093"
-    val emailUrl = "http://localhost:8094"
-    val telegramUrl = "http://localhost:8095"
+    val productUrl = "http://localhost:8092"
+    val shipmentUrl = "http://localhost:8093"
+    val orderUrl = "http://localhost:8094"
+    val emailUrl = "http://localhost:8095"
+    val telegramUrl = "http://localhost:8096"
 
     @PostMapping
     fun process(@RequestBody order: Order): String {
