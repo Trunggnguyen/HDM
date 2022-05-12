@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin
-@RequestMapping
+@RequestMapping("/customer")
 class CustomerApiController {
 
     val customers = listOf(
@@ -14,8 +14,8 @@ class CustomerApiController {
         Customer(3L, "Nguyễn Văn Trung", "Hà Nội", "078716237", "cn20082000@gmail.com", "1988889962"),
     )
 
-    @GetMapping(params = ["id"])
-    fun getCustomer(@RequestParam id: Long): Customer? {
+    @GetMapping("/{id}")
+    fun getCustomer(@PathVariable id: Long): Customer? {
         return customers.firstOrNull { c -> c.id == id }
     }
 }

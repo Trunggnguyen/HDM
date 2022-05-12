@@ -1,1 +1,1 @@
-rootProject.name = "acom-product"
+rootProject.name = "acom-verify"

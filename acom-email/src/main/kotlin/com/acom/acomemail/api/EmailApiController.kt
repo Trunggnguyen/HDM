@@ -9,7 +9,7 @@ import java.math.BigDecimal
 
 @RestController
 @CrossOrigin
-@RequestMapping
+@RequestMapping("/email")
 class EmailApiController(
     private val emailService: EmailService
 ) {

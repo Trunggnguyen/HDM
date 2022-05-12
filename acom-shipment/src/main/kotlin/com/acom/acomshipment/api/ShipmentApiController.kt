@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin
-@RequestMapping
+@RequestMapping("/shipment")
 class ShipmentApiController {
 
     val shipments = listOf(
@@ -17,8 +17,8 @@ class ShipmentApiController {
         Shipment(6, "DHL Expres", 110000.0),
     )
 
-    @GetMapping(params = ["id"])
-    fun getShipment(@RequestParam id: Long): Shipment? {
+    @GetMapping("/{id}")
+    fun getShipment(@PathVariable id: Long): Shipment? {
         return shipments.firstOrNull { s -> s.id == id }
     }
 }

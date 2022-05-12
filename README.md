@@ -6,21 +6,16 @@
 - `Shipment`: port 8093
 - `Order`: port 8094
 - `Email`: port 8095
-- `Telegram`: port 806
+- `Telegram`: port 8096
 - `Process`: port 8080
 ### Kích hoạt process như sau:
 - Method: POST
 - Url: `[baseUrl]:8080`
+- Header: 
+    + Key: BEAR_TOKEN
+    + Value: 
 - Body: 
 <pre><code>{
-    "customer": {
-        "id": 1,
-        "name": "Nguyễn Công Chính",
-        "address": "Hà Nội",
-        "tel": "0123456789",
-        "email": "cn20082000@gmail.com",
-        "telegramId": ""
-    },
     "products": [
         {
             "id": 4,

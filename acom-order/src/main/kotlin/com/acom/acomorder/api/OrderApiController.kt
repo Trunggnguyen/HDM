@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin
-@RequestMapping
+@RequestMapping("/order")
 class OrderApiController {
 
     val orders = mutableListOf<Order>()

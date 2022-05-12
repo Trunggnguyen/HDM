@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @CrossOrigin
-@RequestMapping
+@RequestMapping("/product")
 class ProductApiController {
 
     val products = listOf(
@@ -18,14 +18,14 @@ class ProductApiController {
         Product(7L, "Microsoft Surface Pro", "i5 1035G4/8GB RAM/128GB SSD/12.3\"/Win10 Home/Bạc", 25, 15000000.0),
     )
 
-    @GetMapping(params = ["id"])
-    fun getProduct(@RequestParam id: Long): Product? {
+    @GetMapping("/{id}")
+    fun getProduct(@PathVariable id: Long): Product? {
         return products.firstOrNull { p -> p.id == id }
     }
 
-    @PutMapping
-    fun updateProduct(@RequestBody product: Product): Product? {
-        val index = products.indexOfFirst { p -> p.id == product.id }
+    @PutMapping("/{id}")
+    fun updateProduct(@PathVariable id: Long, @RequestBody product: Product): Product? {
+        val index = products.indexOfFirst { p -> p.id == id }
         if (index >= 0) {
             products[index].quantity -= product.quantity
             return products[index]

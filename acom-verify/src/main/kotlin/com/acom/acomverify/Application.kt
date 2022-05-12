@@ -1,4 +1,4 @@
-package com.acom.acomproduct
+package com.acom.acomverify
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
