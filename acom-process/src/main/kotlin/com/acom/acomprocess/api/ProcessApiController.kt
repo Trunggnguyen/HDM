@@ -49,7 +49,7 @@ class ProcessApiController {
                 val product = restTemplate.getForObject("$productUrl/${p.id}", Product::class.java)
                     ?: return "Failed! Product ${p.name} not found!"
                 if (product.quantity < p.quantity) {
-                    return "Failed! The quantity of ${p.name} is not enough!"
+                    return "Failed! The quantity of ${product.name} is not enough!"
                 }
                 product.quantity = p.quantity
                 products.add(product)
@@ -59,6 +59,9 @@ class ProcessApiController {
         // validate shipment
         val shipment = restTemplate.getForObject("$shipmentUrl/${order.shipment?.id}", Shipment::class.java)
             ?: return "Failed! Shipment not found!"
+        if (shipment.isSuppost != true) {
+            return "Failed! Shipment not suppost!"
+        }
 
         // save order
         val validatedOrder = Order(customer, products, shipment)

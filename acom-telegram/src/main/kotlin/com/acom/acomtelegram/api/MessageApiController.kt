@@ -17,7 +17,7 @@ class MessageApiController(
     fun sendMessage(@RequestBody customer: Customer): ResponseModel {
         val message = TelegramMessage(
             customer.telegramId,
-            "Cảm ơn bạn đã mua hàng tại Acom,\n" +
+            "Bạn có đơn hàng mới tại Acom,\n" +
                     "Vui lòng kiểm tra email để biết thêm chi tiết hóa đơn."
         )
         messageService.sendMessage(message)
